@@ -1,6 +1,7 @@
 const GenericModel = require('../Model/GenericModel');
-const database = require('./Connection');
-// await database.sync();
+const database = require('../Model/Connection');
+const { response } = require('express');
+database.sync();
 
 module.exports = {
     async ListAll(req, res){
@@ -15,8 +16,8 @@ module.exports = {
 
     async GetById(req, res){
         try {
-            const produtosList = await GenericModel.findByPk();
-            return resp.json(produtosList);
+            const generic = await GenericModel.findByPk(req.body.Id);
+            return res.json(generic);
         } catch (error) {
             return console.log("Erro na lista de produtos: " + error);
         }
@@ -25,14 +26,38 @@ module.exports = {
     async addGeneric(req, res){
         try {
             const generic = await GenericModel.create({
-                Description: "new Generic"
+                Description: req.body.Description
             });
-            console.log(generic);
+            return console.log("Registro adicionado com sucesso. " + res.json(generic));
+            
         } catch (error) {
             return console.log("Erro ao adicionar produto: " + error)
         }
+    },
+
+    async updateGeneric(req, res){
+        try {
+            const genericModel = await GenericModel.findByPk(req.body.Id);
+            if(genericModel){
+                genericModel.Description = req.body.Description;
+                genericModel.save();
+            }
+
+            return console.log("Registro alterado com sucesso. "+ res.json(genericModel));
+            
+        } catch (error) {
+            return console.log("Erro ao alterar produto: " + error);
+        }
+    },
+
+    async deleteGeneric(req, res){
+        try {
+            const genericModel = await GenericModel.findByPk(req.body.Id);
+            await genericModel.destroy();
+            return console.log("Registro excluído com sucesso.");
+        } catch (error) {
+            return console.log("Erro ao deletar produto: " + error);
+        }
     }
-
-
 
 }

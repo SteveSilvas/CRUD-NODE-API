@@ -11,8 +11,11 @@ routes.get("/", (req, res) => {
 })
 
 routes.get("/list", GenericController.ListAll);
-routes.get("/add", GenericController.addGeneric)
-// routes.post("/update", GenericController.Update);
 
+// routes.get("/add", GenericController.addGeneric("description with parameters"));
+
+// routes.get("/update", GenericController.updateGeneric("Description changed"));
+
+routes.get("/getbyid", GenericController.GetById);
 
 module.exports = routes;
