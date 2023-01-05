@@ -18,7 +18,7 @@ routes.get("/batata", ()=>{
 
 routes.get("/generics/", GenericController.ListAll);
 
-routes.put("/genericss/add", GenericController.addGeneric);
+routes.put("/generics/add", GenericController.addGeneric);
 
 routes.post("/generics/update", GenericController.updateGeneric);
 
