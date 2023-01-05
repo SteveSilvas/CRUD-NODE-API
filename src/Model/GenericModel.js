@@ -1,8 +1,8 @@
-const database = require('./Connection');
-const { Sequelize, Model } = require('sequelize');
+const database = require("./Connection");
+const { Sequelize, Model } = require("sequelize");
 const schema = "";
 
-class Generic extends Model{ }
+class Generic extends Model {}
 
 module.exports  = database.define('Generic', {
     Id:
@@ -19,3 +19,21 @@ module.exports  = database.define('Generic', {
     },
 })
 
+// Generic.init(
+//   {
+//     Id: {
+//       type: Sequelize.INTEGER,
+//       autoIncrement: true,
+//       allowNull: false,
+//       primaryKey: true,
+//     },
+//     Description: {
+//       type: Sequelize.STRING,
+//       allowNull: false,
+//     },
+//   },
+//   {
+//     database,
+//     modelName: "Generic",
+//   }
+// );

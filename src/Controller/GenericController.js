@@ -1,9 +1,10 @@
 const GenericModel = require('../Model/GenericModel');
 const database = require('../Model/Connection');
 const { response } = require('express');
-database.sync();
+// database.sync();
 
 module.exports = {
+    
     async ListAll(req, res){
         try {
             const genericsList = await GenericModel.findAll();

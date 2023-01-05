@@ -5,17 +5,26 @@ const GenericController = require("../Controller/GenericController");
 
 const routes = express.Router();
 
+// testes
 routes.get("/", (req, res) => {
     console.log("home: -" + process.env.DB_NAME + " - ");
-    console.log(process.env);
 })
 
-routes.get("/list", GenericController.ListAll);
+routes.get("/batata", ()=>{
+    console.log("BATATA");
+});
 
-// routes.get("/add", GenericController.addGeneric("description with parameters"));
 
-// routes.get("/update", GenericController.updateGeneric("Description changed"));
 
-routes.get("/getbyid", GenericController.GetById);
+routes.get("/generics/", GenericController.ListAll);
+
+routes.put("/genericss/add", GenericController.addGeneric);
+
+routes.post("/generics/update", GenericController.updateGeneric);
+
+routes.get("/generics/getbyid", GenericController.GetById);
+
+routes.delete("/generics/delete", GenericController.deleteGeneric)
+
 
 module.exports = routes;
